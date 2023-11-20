@@ -147,3 +147,6 @@ INSERT INTO `section` (`id`, `station_1`, `station_2`, `distance`) VALUES
 (25,	27,	28,	1),
 (26,	28,	29,	1),
 (27,	29,	30,	1);
+
+
+
