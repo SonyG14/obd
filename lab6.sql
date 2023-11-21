@@ -11,98 +11,70 @@ JOIN regions ON cities.region = regions.uuid
 WHERE regions.name = 'Nord';
 
 3.
-CREATE TABLE `countries` (
-  `country_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `iso_id` int(10) unsigned NOT NULL,
-  `abbreviation` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`country_id`)
-);
-
-INSERT INTO `countries` (`country_id`, `iso_id`, `abbreviation`, `name`) VALUES
-(1, 804, 'UA', 'Україна');
-
-CREATE TABLE `cities_metro` (
-  `city_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` int(10) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`city_id`),
-  FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`)
-);
-
-INSERT INTO `cities_metro` (`city_id`, `country_id`, `name`) VALUES
-(1, 1, 'Харків');
-
 CREATE TABLE `metro_lines` (
-  `line_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `city_id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`line_id`),
   FOREIGN KEY (`city_id`) REFERENCES `cities_metro` (`city_id`)
 );
 
-INSERT INTO `metro_lines` (`line_id`, `city_id`, `name`) VALUES
-(1, 1, 'Холодногірсько-Заводська'),
-(2, 1, 'Салтівська'),
-(3, 1, 'Олексіївська');
+INSERT INTO `metro_lines` (`line_id`, `name`) VALUES
+(1, 'Холодногірсько-Заводська'),
+(2, 'Салтівська'),
+(3, 'Олексіївська');
 
 CREATE TABLE `metro_stations` (
-  `station_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` int(10) unsigned NOT NULL,
-  `city_id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `line_id` int(10) unsigned NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `transfer` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`station_id`),
-  FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
-  FOREIGN KEY (`city_id`) REFERENCES `cities_metro` (`city_id`),
-  FOREIGN KEY (`line_id`) REFERENCES `metro_lines` (`line_id`),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`line_id`) REFERENCES `metro_lines` (`id`),
   FOREIGN KEY (`transfer`) REFERENCES `metro_stations` (`station_id`)
 );
 
-INSERT INTO `metro_stations` (`country_id`, `city_id`, `line_id`, `name`, `transfer`) VALUES
-(1, 1, 1, 'Холодна гора', NULL),
-(1, 1, 1, 'Південний вокзал', NULL),
-(1, 1, 1, 'Центральний ринок', NULL),
-(1, 1, 1, 'Майдан Конституції', 3),
-(1, 1, 1, 'Проспект Гагаріна', NULL),
-(1, 1, 1, 'Спортивна', 2),
-(1, 1, 1, 'Завод імені Малишева', NULL),
-(1, 1, 1, 'Турбоатом', NULL),
-(1, 1, 1, 'Палац спорту', NULL),
-(1, 1, 1, 'Армійська', NULL),
-(1, 1, 1, 'Імені О.С. Масельського', NULL),
-(1, 1, 1, 'Тракторний завод', NULL),
-(1, 1, 2, 'Героїв праці', NULL),
-(1, 1, 2, 'Студентська', NULL),
-(1, 1, 2, 'Академіка Павлова', NULL),
-(1, 1, 2, 'Академіка Барабашова', NULL),
-(1, 1, 2, 'Київська', NULL),
-(1, 1, 2, 'Пушкінська', NULL),
-(1, 1, 2, 'Університет', 1),
-(1, 1, 2, 'Історичний музей', 3),
-(1, 1, 3, 'Перемога', NULL),
-(1, 1, 3, 'Олексіївська', NULL),
-(1, 1, 3, '23 Серпня', NULL),
-(1, 1, 3, 'Ботанічний сад', NULL),
-(1, 1, 3, 'Наукова', NULL),
-(1, 1, 3, 'Держпром', 1),
-(1, 1, 3, 'Архітектора Бекетова', NULL),
-(1, 1, 3, 'Захисників України', NULL),
-(1, 1, 3, 'Метробудівників', 2);
+INSERT INTO `metro_stations` (`line_id`, `name`) VALUES
+( 1, 'Холодна гора', NULL),
+( 1, 'Південний вокзал', NULL),
+( 1, 'Центральний ринок', NULL),
+( 1, 'Майдан Конституції', 3),
+( 1, 'Проспект Гагаріна', NULL),
+( 1, 'Спортивна', 2),
+( 1, 'Завод імені Малишева', NULL),
+( 1, 'Турбоатом', NULL),
+( 1, 'Палац спорту', NULL),
+( 1, 'Армійська', NULL),
+( 1, 'Імені О.С. Масельського', NULL),
+( 1, 'Тракторний завод', NULL),
+( 2, 'Героїв праці', NULL),
+( 2, 'Студентська', NULL),
+( 2, 'Академіка Павлова', NULL),
+( 2, 'Академіка Барабашова', NULL),
+( 2, 'Київська', NULL),
+( 2, 'Пушкінська', NULL),
+( 2, 'Університет', 1),
+( 2, 'Історичний музей', 3),
+( 3, 'Перемога', NULL),
+( 3, 'Олексіївська', NULL),
+( 3, '23 Серпня', NULL),
+( 3, 'Ботанічний сад', NULL),
+( 3, 'Наукова', NULL),
+( 3, 'Держпром', 1),
+( 3, 'Архітектора Бекетова', NULL),
+( 3, 'Захисників України', NULL),
+( 3, 'Метробудівників', 2);
 
 CREATE TABLE `interchange_stations` (
-  `interchange_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `city_id` int(10) unsigned NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`interchange_id`),
   FOREIGN KEY (`city_id`) REFERENCES `cities_metro` (`city_id`)
 );
 
-INSERT INTO `interchange_stations` (`interchange_id`, `city_id`, `name`) VALUES
-(313, 1, 'Історичний музей'),
-(314, 1, 'Індустріальна'),
-(315, 1, 'Інститут');
+INSERT INTO `interchange_stations` (`id`, `name`) VALUES
+(313, 'Історичний музей'),
+(314, 'Індустріальна'),
+(315, 'Інститут');
 
 CREATE TABLE `section` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -112,8 +84,8 @@ CREATE TABLE `section` (
   PRIMARY KEY (`id`),
   KEY `station_1` (`station_1`),
   KEY `station_2` (`station_2`),
-  FOREIGN KEY (`station_1`) REFERENCES `metro_stations` (`station_id`),
-  FOREIGN KEY (`station_2`) REFERENCES `metro_stations` (`station_id`)
+  FOREIGN KEY (`station_1`) REFERENCES `metro_stations` (`id`),
+  FOREIGN KEY (`station_2`) REFERENCES `metro_stations` (`id`)
 ) 
 
 INSERT INTO `section` (`id`, `station_1`, `station_2`, `distance`) VALUES
