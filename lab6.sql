@@ -117,7 +117,7 @@ CREATE TABLE `section` (
   KEY `station_2` (`station_2`),
   CONSTRAINT `section_ibfk_1` FOREIGN KEY (`station_1`) REFERENCES `metro_stations` (`station_id`),
   CONSTRAINT `section_ibfk_2` FOREIGN KEY (`station_2`) REFERENCES `metro_stations` (`station_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 
 INSERT INTO `section` (`id`, `station_1`, `station_2`, `distance`) VALUES
 (1,	1,	2,	1),
