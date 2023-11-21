@@ -47,10 +47,3 @@ CREATE TABLE Files (
     FOREIGN KEY (project_id) REFERENCES Projects(project_id),
     FOREIGN KEY (task_id) REFERENCES Tasks(task_id)
 );
-
--- Додавання файлу до проекту--
-INSERT INTO Files (file_name, file_url, project_id, task_id) VALUES ('Файл для проекту', 'http://example.com/projectfile', 1, NULL);
-
--- Додавання файлу до завдання--
-INSERT INTO Files (file_name, file_url, project_id, task_id) VALUES ('Файл для завдання', 'http://example.com/taskfile', NULL, 1);
-
