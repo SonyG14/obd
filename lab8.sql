@@ -10,7 +10,7 @@ CREATE TABLE projects (
 CREATE TABLE tasks (
     task_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    user_id INT,
+    author_id INT,
     project_id INT,
     deadline DATETIME,
     status VARCHAR(50),
@@ -34,6 +34,13 @@ CREATE TABLE task_users (
     task_id INT,
     user_id INT,
     FOREIGN KEY (task_id) REFERENCES tasks(task_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+CREATE TABLE project_users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    project_id INT,
+    user_id INT,
+    FOREIGN KEY (project_id) REFERENCES projects(project_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
