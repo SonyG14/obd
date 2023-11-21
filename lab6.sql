@@ -46,7 +46,6 @@ INSERT INTO `metro_lines` (`line_id`, `city_id`, `name`) VALUES
 (2, 1, 'Салтівська'),
 (3, 1, 'Олексіївська');
 
-DROP TABLE IF EXISTS `metro_stations`;
 CREATE TABLE `metro_stations` (
   `station_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `country_id` int(10) unsigned NOT NULL,
@@ -92,7 +91,6 @@ INSERT INTO `metro_stations` (`country_id`, `city_id`, `line_id`, `name`, `trans
 (1, 1, 3, 'Захисників України', NULL),
 (1, 1, 3, 'Метробудівників', 2);
 
-DROP TABLE IF EXISTS `interchange_stations`;
 CREATE TABLE `interchange_stations` (
   `interchange_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `city_id` int(10) unsigned NOT NULL,
@@ -106,7 +104,6 @@ INSERT INTO `interchange_stations` (`interchange_id`, `city_id`, `name`) VALUES
 (314, 1, 'Індустріальна'),
 (315, 1, 'Інститут');
 
-DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `station_1` int(10) unsigned NOT NULL,
