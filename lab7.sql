@@ -12,7 +12,7 @@ CREATE TABLE `news` (
   `category` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category` (`name_category`),
-  CONSTRAINT `fk_news_category` FOREIGN KEY (`news_category`) REFERENCES `category` (`id`)
+  FOREIGN KEY (`news_category`) REFERENCES `category` (`id`)
 )
 
 CREATE TABLE `news_comments` (
@@ -24,8 +24,8 @@ CREATE TABLE `news_comments` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `news_id` (`news_id`),
-  CONSTRAINT `fk_news_comments_news` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`),
-  CONSTRAINT `fk_news_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+  FOREIGN KEY (`news_id`) REFERENCES `news` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 )
 
 CREATE TABLE `rate` (
@@ -37,8 +37,8 @@ CREATE TABLE `rate` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `news_id` (`news_id`),
-  CONSTRAINT `fk_rate_news` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`),
-  CONSTRAINT `fk_rate_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+  FOREIGN KEY (`news_id`) REFERENCES `news` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) 
 
 CREATE TABLE `users` (
