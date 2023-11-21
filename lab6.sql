@@ -115,8 +115,8 @@ CREATE TABLE `section` (
   PRIMARY KEY (`id`),
   KEY `station_1` (`station_1`),
   KEY `station_2` (`station_2`),
-  CONSTRAINT `section_ibfk_1` FOREIGN KEY (`station_1`) REFERENCES `metro_stations` (`station_id`),
-  CONSTRAINT `section_ibfk_2` FOREIGN KEY (`station_2`) REFERENCES `metro_stations` (`station_id`)
+  FOREIGN KEY (`station_1`) REFERENCES `metro_stations` (`station_id`),
+  FOREIGN KEY (`station_2`) REFERENCES `metro_stations` (`station_id`)
 ) 
 
 INSERT INTO `section` (`id`, `station_1`, `station_2`, `distance`) VALUES
