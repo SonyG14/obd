@@ -9,7 +9,7 @@ CREATE TABLE news (
    title VARCHAR(255) NOT NULL,
    text TEXT NOT NULL,
    category_id INT,
-   FOREIGN KEY (category_id) REFERENCES Categories(id) 
+   FOREIGN KEY (category_id) REFERENCES categories(id) 
 );
 
 CREATE TABLE comments (
