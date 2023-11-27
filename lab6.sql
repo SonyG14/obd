@@ -13,7 +13,7 @@ WHERE regions.name = 'Nord';
 3.
 CREATE TABLE lines (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE stations (
