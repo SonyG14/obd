@@ -17,25 +17,26 @@ CREATE TABLE lines (
 );
 
 CREATE TABLE stations (
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   line_id int(10) unsigned NOT NULL,
-   name VARCHAR(255) NOT NULL,
-   FOREIGN KEY (line_id) REFERENCES lines (id)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  line_id INT(10) UNSIGNED NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  FOREIGN KEY (line_id) REFERENCES lines (id)
 );
 
 CREATE TABLE interchange_stations (
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   name VARCHAR(255) NOT NULL,
-  FOREIGN KEY (`city_id`) REFERENCES `cities_metro` (`city_id`)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  FOREIGN KEY (city_id) REFERENCES cities_metro (city_id)
 );
 
-CREATE TABLE section (
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   station_1 int(10) unsigned NOT NULL,
-   station_2 int(10) unsigned NOT NULL,
-   distance int(10) unsigned DEFAULT NULL,
-  KEY station_1 (station_1),
-  KEY station_2 (station_2),
-  FOREIGN KEY (station_1) REFERENCES stations (id),
-  FOREIGN KEY (station_2) REFERENCES stations (id)
+CREATE TABLE sections (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  line_id INT(10) UNSIGNED NOT NULL,
+  station_from INT(10) UNSIGNED NOT NULL,
+  station_to INT(10) UNSIGNED NOT NULL,
+  distance INT(10) UNSIGNED DEFAULT NULL,
+  FOREIGN KEY (line_id) REFERENCES lines (id),
+  FOREIGN KEY (station_from_id) REFERENCES stations (id),
+  FOREIGN KEY (station_to_id) REFERENCES stations (id)
 );
+
