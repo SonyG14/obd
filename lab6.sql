@@ -18,25 +18,33 @@ CREATE TABLE lines (
 
 CREATE TABLE stations (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  line_id INT(10) UNSIGNED NOT NULL,
+  line INT(10) UNSIGNED NOT NULL,
   name VARCHAR(255) NOT NULL,
-  FOREIGN KEY (line_id) REFERENCES lines (id)
+  FOREIGN KEY (line) REFERENCES lines (id)
 );
 
 CREATE TABLE interchange_stations (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
-  FOREIGN KEY (city_id) REFERENCES cities_metro (city_id)
 );
 
 CREATE TABLE sections (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  line_id INT(10) UNSIGNED NOT NULL,
+  line INT(10) UNSIGNED NOT NULL,
   station_from INT(10) UNSIGNED NOT NULL,
   station_to INT(10) UNSIGNED NOT NULL,
   distance INT(10) UNSIGNED DEFAULT NULL,
-  FOREIGN KEY (line_id) REFERENCES lines (id),
-  FOREIGN KEY (station_from_id) REFERENCES stations (id),
-  FOREIGN KEY (station_to_id) REFERENCES stations (id)
+  FOREIGN KEY (line) REFERENCES lines (id),
+  FOREIGN KEY (station_from) REFERENCES stations (id),
+  FOREIGN KEY (station_to) REFERENCES stations (id)
+);
+
+CREATE TABLE transitions (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  from_station INT(10) UNSIGNED NOT NULL,
+  to_station INT(10) UNSIGNED NOT NULL,
+  transition VARCHAR(255) NOT NULL,
+  FOREIGN KEY (from_station) REFERENCES stations (id),
+  FOREIGN KEY (to_station) REFERENCES stations (id)
 );
 
